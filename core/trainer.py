@@ -76,6 +76,12 @@ class Trainer(object):
         """
         experiment_begin = time()
         for epoch_idx in range(self.from_epoch + 1, self.config["epoch"]):
+            # Set current epoch for models that need it (e.g., MAML++)
+            if hasattr(self.model, 'set_current_epoch'):
+                self.model.set_current_epoch(epoch_idx)
+            elif hasattr(self.model, 'classifier') and hasattr(self.model.classifier, 'set_current_epoch'):
+                self.model.classifier.set_current_epoch(epoch_idx)
+            
             if self.distribute and self.model_type == ModelType.FINETUNING:
                 self.train_loader[0].sampler.set_epoch(epoch_idx)
             print("============ Train on the train set ============")
@@ -136,6 +142,12 @@ class Trainer(object):
         Returns:
             float: Acc.
         """
+        # Set current epoch for models that need it (e.g., MAML++)
+        if hasattr(self.model, 'set_current_epoch'):
+            self.model.set_current_epoch(epoch_idx)
+        elif hasattr(self.model, 'classifier') and hasattr(self.model.classifier, 'set_current_epoch'):
+            self.model.classifier.set_current_epoch(epoch_idx)
+            
         self.model.train()
 
         meter = self.train_meter

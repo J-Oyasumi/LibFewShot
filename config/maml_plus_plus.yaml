@@ -1,0 +1,56 @@
+includes:
+  - headers/data.yaml
+  - headers/device.yaml
+  - headers/misc.yaml
+  - headers/model.yaml
+  - headers/optimizer.yaml
+
+way_num: 5                
+shot_num: 1                
+query_num: 15             
+episode_size: 4          
+train_episode: 500
+test_episode: 60
+
+device_ids: 0
+n_gpu: 1
+epoch: 100                
+test_epoch: 10
+
+optimizer:
+  name: Adam
+  kwargs:
+    lr: 1e-3              
+    weight_decay: 0.0     
+
+backbone:
+  name: Conv64F
+  kwargs:
+    is_flatten: True
+    is_feature: False
+    leaky_relu: False
+    negative_slope: 0.2
+    last_pool: True
+
+classifier:
+  name: MAMLPlusPlus
+  kwargs:
+    inner_param:
+      lr: 1e-2                              
+      train_iter: 1                         # number_of_training_steps_per_iter
+      test_iter: 1                         # number_of_evaluation_steps_per_iter
+      
+      multi_step_loss_num_epochs: 15        # MSLO enabled for first N epochs
+      second_order: True                    # Use second-order gradients
+      first_order_to_second_order_epoch: -1 # Epoch to switch (-1 = always second-order)
+      
+      enable_inner_loop_optimizable_bn_params: False
+      learnable_batch_norm_momentum: False
+      learnable_bn_gamma: True
+      learnable_bn_beta: True
+      
+    feat_dim: 1600
+    
+    use_layer_norm: True                    # Layer normalization
+    use_per_param_lr: True                  # learnable_per_layer_per_step_inner_loop_learning_rate
+    use_mslo: True                          # use_multi_step_loss_optimization
