@@ -1,0 +1,44 @@
+includes:
+  - headers/data.yaml
+  - headers/device.yaml
+  - headers/misc.yaml
+  - headers/model.yaml
+  - headers/optimizer.yaml
+  - maml_plus_plus.yaml
+
+shot_num: 5
+
+classifier:
+  name: MAMLPlusPlus
+  kwargs:
+    inner_param:
+      lr: 1e-2
+      train_iter: 1
+      test_iter: 1
+
+      mslo_lambda: 0.01
+      multi_step_loss_num_epochs: 15
+      second_order: True
+      first_order_to_second_order_epoch: -1
+
+      enable_inner_loop_optimizable_bn_params: False
+      learnable_bn_gamma: True
+      learnable_bn_beta: True
+
+    feat_dim: 1600
+
+    use_layer_norm: True
+    use_per_param_lr: True
+    use_mslo: True
+
+data_root: /data/fewshot/tieredImageNet
+image_size: 84
+use_memory: False
+
+n_gpu: 1
+device_ids: 0
+deterministic: False
+seed: 0
+
+log_name: MAML++-tieredImageNet-1
+save_interval: 10
