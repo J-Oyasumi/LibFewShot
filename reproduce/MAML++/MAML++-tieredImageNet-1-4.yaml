@@ -6,6 +6,8 @@ includes:
   - headers/optimizer.yaml
   - maml_plus_plus.yaml
 
+shot_num: 5
+
 classifier:
   name: MAMLPlusPlus
   kwargs:
@@ -38,5 +40,5 @@ device_ids: 0
 deterministic: False
 seed: 0
 
-log_name: MAML++-tieredImageNet-4
+log_name: MAML++-tieredImageNet-1-4
 save_interval: 10

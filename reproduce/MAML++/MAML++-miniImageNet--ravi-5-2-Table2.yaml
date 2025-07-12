@@ -40,5 +40,5 @@ device_ids: 0
 deterministic: False
 seed: 0
 
-log_name: MAML++-miniImageNet--ravi-1-Table2
+log_name: MAML++-miniImageNet--ravi-5-2-Table2
 save_interval: 10

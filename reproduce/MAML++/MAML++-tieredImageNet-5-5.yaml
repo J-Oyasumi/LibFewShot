@@ -40,5 +40,5 @@ device_ids: 0
 deterministic: False
 seed: 0
 
-log_name: MAML++-tieredImageNet-1
+log_name: MAML++-tieredImageNet-5-5
 save_interval: 10
