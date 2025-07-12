@@ -10,24 +10,24 @@ classifier:
   name: MAMLPlusPlus
   kwargs:
     inner_param:
-      lr: 1e-2                              
-      train_iter: 5                         
-      test_iter: 5                         
-      
-      mslo_lambda: 0.01                     
-      multi_step_loss_num_epochs: 15        
-      second_order: True                    
-      first_order_to_second_order_epoch: -1 
-      
+      lr: 1e-2
+      train_iter: 5
+      test_iter: 5
+
+      mslo_lambda: 0.01
+      multi_step_loss_num_epochs: 15
+      second_order: True
+      first_order_to_second_order_epoch: -1
+
       enable_inner_loop_optimizable_bn_params: False
       learnable_bn_gamma: True
       learnable_bn_beta: True
-      
+
     feat_dim: 1600
-    
-    use_layer_norm: True                    
-    use_per_param_lr: True                  
-    use_mslo: True                              
+
+    use_layer_norm: True
+    use_per_param_lr: True
+    use_mslo: True
 
 data_root: /data/fewshot/miniImageNet--ravi
 image_size: 84
@@ -40,5 +40,3 @@ seed: 0
 
 log_name: MAML++-miniImageNet--ravi-5-Table2
 save_interval: 10
-
-
